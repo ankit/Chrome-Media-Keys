@@ -32,10 +32,8 @@ chrome.extension.onRequest.addListener(
         break;
       case 'register':
         console.log('dispatch got register');
-        chrome.tabs.getSelected(null, function(tab) {
-          port = chrome.tabs.connect(tab.id);
-          sendResponse({});
-        });
+        port = chrome.tabs.connect(sender.tab.id);
+        sendResponse({});
         break;
       case 'key':
         console.log('dispatch got keycode request');

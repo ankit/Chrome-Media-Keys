@@ -7,12 +7,16 @@ var playpause = {keyCode: 118};
 var next = {keyCode: 119};
 
 chrome.extension.sendRequest({type: 'key'}, function(response) {
-	previous = response.previous;
-	playpause = response.playpause;
-	next = response.next;
+  previous = response.previous;
+  playpause = response.playpause;
+  next = response.next;
 });
 
 window.onkeydown = function(event) {
+  if (isInputField(event.target)) {
+    return true;
+  }
+
   var command = null;
   if (eventKeyMatch(event, previous)) {
     command = 'previous';
@@ -36,4 +40,14 @@ function eventKeyMatch(event, key) {
          event.altKey == key.altKey &&
          event.ctrlKey == key.ctrlKey &&
          event.shiftKey == key.shiftKey;
+}
+
+function isInputField(el) {
+  var tagName = el.tagName.toLowerCase();
+  var inputTypes = ['input', 'textarea', 'div', 'object'];
+
+  if (inputTypes.indexOf(tagName) != -1)
+    return true;
+  else
+    return false;
 }
