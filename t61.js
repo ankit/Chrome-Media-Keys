@@ -5,8 +5,8 @@ chrome.extension.sendRequest({type: 'register'}, function(response) {
 
 function simulateClick(elementId) {
   var evt = document.createEvent('MouseEvents');
-  evt.initMouseEvent('click', true, false,  document, 0, 0, 0, 0, 0, false, 
-	  false, false, false, 0, null);
+  evt.initMouseEvent('click', true, true,  document, 0, 0, 0, 0, 0, false,
+    false, false, false, 0, null);
   document.getElementById(elementId).dispatchEvent(evt);
 }
 
