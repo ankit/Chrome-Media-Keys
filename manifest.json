@@ -7,13 +7,14 @@
     {
       "matches": ["<all_urls>"],
       "js": ["key.js"],
-      "run_at": "document_start"
+      "run_at": "document_start",
+      "all_frames": true
     },
     {
       "matches": ["http://www.thesixtyone.com/*"],
       "js": ["t61.js"]
     }
   ],
-	"background_page": "dispatch.html",
-	"options_page": "options.html"
+  "background_page": "dispatch.html",
+  "options_page": "options.html"
 }
