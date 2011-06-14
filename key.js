@@ -6,14 +6,22 @@ var previous = {keyCode: 117};
 var playpause = {keyCode: 118};
 var next = {keyCode: 119};
 
+var options = {
+  disableinputfields: false
+};
+
 chrome.extension.sendRequest({type: 'key'}, function(response) {
   previous = response.previous;
   playpause = response.playpause;
   next = response.next;
 });
 
+chrome.extension.sendRequest({type: 'options'}, function(response) {
+  options = response;
+});
+
 window.onkeydown = function(event) {
-  if (isInputField(event.target)) {
+  if (isInputField(event.target) && options.disableinputfields) {
     return true;
   }
 

@@ -39,6 +39,9 @@ chrome.extension.onRequest.addListener(
         console.log('dispatch got keycode request');
         sendResponse(getCommandShortcuts());
         break;
+      case 'options':
+        sendResponse(getOptions());
+        break;
     }
   }
 );
@@ -50,5 +53,11 @@ function getCommandShortcuts(command) {
     out[item] = JSON.parse(localStorage[item]);
   });
   return out;
+}
+
+function getOptions() {
+  return {
+    disableinputfields: localStorage['disableinputfields']
+  };
 }
 </script>
